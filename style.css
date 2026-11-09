@@ -221,7 +221,6 @@ a:focus-visible {
 .focus-strip,
 .focus-item,
 .section-topline,
-.journey-item,
 .social-link,
 .footer-inner {
   display: flex;
@@ -253,8 +252,7 @@ main h2,
 main h3,
 main span,
 main .project-card,
-main .focus-strip,
-main .journey-item {
+main .focus-strip {
   pointer-events: auto;
 }
 
@@ -333,6 +331,18 @@ main .journey-item {
   position: relative;
   z-index: 1;
   padding-bottom: 16px;
+}
+
+.hero-name {
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: clamp(30px, 3.4vw, 40px);
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.hero-name strong {
+  font-weight: 800;
 }
 
 .eyebrow {
@@ -643,8 +653,7 @@ p {
   padding-top: 34px;
 }
 
-.intro-copy p,
-.journey-intro {
+.intro-copy p {
   margin-bottom: 17px;
   color: var(--muted);
   font-size: 14px;
@@ -674,18 +683,12 @@ p {
 }
 
 .focus-label {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--faint);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-}
-
-.focus-label .status-dot {
-  width: 6px;
-  height: 6px;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(20px, 2.4vw, 25px);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.2;
 }
 
 .focus-item {
@@ -706,6 +709,15 @@ p {
   border-radius: 4px;
   color: var(--violet);
   font-size: 9px;
+}
+
+.skills-section {
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(17, 26, 42, 0.25), rgba(17, 26, 42, 0.08));
+}
+
+.skills-section .focus-strip {
+  margin-top: 0;
 }
 
 .projects-section {
@@ -890,70 +902,27 @@ p {
   color: var(--cyan);
 }
 
-.journey-section {
+.achievements-section {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(17, 26, 42, 0.34), rgba(17, 26, 42, 0.12));
+  background:
+    radial-gradient(ellipse at 90% 45%, rgba(var(--secondary-rgb), 0.08), transparent 30rem),
+    linear-gradient(180deg, rgba(17, 26, 42, 0.34), rgba(17, 26, 42, 0.12));
 }
 
-.journey-grid {
+.achievement-grid {
   display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
-  gap: 85px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
 }
 
-.journey-intro {
-  max-width: 350px;
-  margin-top: 24px;
+.achievement-card {
+  min-height: 250px;
 }
 
-.journey-list {
-  border-top: 1px solid var(--line);
-}
-
-.journey-item {
-  align-items: flex-start;
-  gap: 20px;
-  padding: 24px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.journey-marker {
-  padding-top: 2px;
-  color: var(--cyan);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.journey-item > div {
-  flex: 1;
-}
-
-.journey-label {
-  margin-bottom: 5px;
-  color: var(--faint);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-}
-
-.journey-item h3 {
-  margin-bottom: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-}
-
-.journey-item p:last-child {
-  max-width: 430px;
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.journey-arrow {
-  color: var(--faint);
-  font-size: 13px;
+.achievement-card h3 {
+  max-width: 340px;
+  font-size: 21px;
 }
 
 .connect-section {
@@ -1104,8 +1073,7 @@ p {
     gap: 10px;
   }
 
-  .intro-grid,
-  .journey-grid {
+  .intro-grid {
     gap: 48px;
   }
 
@@ -1160,9 +1128,10 @@ p {
     font-size: 11px;
   }
 
-  .nav-links a:nth-child(1),
-  .nav-links a:nth-child(2),
-  .nav-links a:nth-child(3) {
+  .nav-links > a[href="#about"],
+  .nav-links > a[href="#skills"],
+  .nav-links > a[href="#projects"],
+  .nav-links > a[href="#achievements"] {
     display: none;
   }
 
@@ -1229,7 +1198,6 @@ p {
   }
 
   .intro-grid,
-  .journey-grid,
   .connect-inner {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -1272,7 +1240,8 @@ p {
     display: none;
   }
 
-  .project-grid {
+  .project-grid,
+  .achievement-grid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
@@ -1287,13 +1256,10 @@ p {
     flex-direction: row;
   }
 
-  .journey-intro {
-    margin-top: 17px;
-  }
-
-  .journey-item {
-    gap: 14px;
-    padding-block: 20px;
+  .achievement-empty {
+    align-items: flex-start;
+    gap: 15px;
+    padding: 22px 18px;
   }
 
   .connect-section {
