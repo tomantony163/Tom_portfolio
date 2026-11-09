@@ -55,6 +55,7 @@ html[data-theme="sunset"] {
 
 #theme-switcher-root {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   pointer-events: auto;
 }
@@ -229,7 +230,8 @@ a:focus-visible {
 
 .navigation {
   min-height: 76px;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 8px 16px;
   pointer-events: none;
 }
 
@@ -276,9 +278,21 @@ main .focus-strip {
 }
 
 .nav-links {
-  gap: 34px;
+  min-width: 0;
+  flex: 1 1 500px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px clamp(6px, 1.2vw, 14px);
   color: var(--muted);
   font-size: 13px;
+}
+
+.nav-links > a {
+  flex: 0 0 auto;
+}
+
+#theme-switcher-root {
+  margin-left: auto;
 }
 
 .nav-links a:not(.nav-cta):hover,
@@ -1117,15 +1131,21 @@ p {
 
   .navigation {
     min-height: 66px;
-  }
-
-  .navigation .brand-name {
-    font-size: 17px;
+    flex-wrap: nowrap;
+    gap: 8px;
   }
 
   .nav-links {
-    gap: 10px;
+    min-width: 0;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 8px;
     font-size: 11px;
+  }
+
+  #theme-switcher-root {
+    margin-left: auto;
   }
 
   .nav-links > a[href="#about"],
@@ -1285,10 +1305,6 @@ p {
 }
 
 @media (max-width: 380px) {
-  .navigation .brand-name {
-    font-size: 15px;
-  }
-
   .nav-links {
     gap: 6px;
   }
